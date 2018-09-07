@@ -1,0 +1,25 @@
+﻿@using Equipment.Models
+@model newEquipment
+@if (Model.TrackMeters.Count == 0)
+{
+    <div>Нет данной информации</div>
+}
+else
+{
+<table>
+    <tr>
+        <th>Дата</th>
+        <th>Часы наработки</th>
+        <th>Моточасы</th>
+    </tr>
+    @foreach (TrackMeter item in Model.TrackMeters)
+    {
+        <tr>
+            <td>@item.dMeterDate</td>
+            <td>@item.intHoursHoursOperation</td>
+            <td>@item.intMeterReading</td>
+        </tr>
+    }
+
+</table>
+}

@@ -1,0 +1,27 @@
+﻿@using Equipment.Models
+@model newEquipment
+
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+
+    <div class="container-fluid">
+        <div id=@("resTR"+Model.intEquipmentID)>
+
+            <div><img width="200" height="200" src="@Url.Content("~/Content/pic/"+Model.TablesModel.strImage)" /></div>
+            @Ajax.ActionLink("Track Meter", "GetTrackMeters", "Equipment", new { id = Model.intEquipmentID }, new AjaxOptions { UpdateTargetId = "results" + Model.intEquipmentID, HttpMethod = "Post", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-primary" })
+            @Ajax.ActionLink("Track Service History", "GetTrackServiceHistory", "Equipment", new { id = Model.intEquipmentID }, new AjaxOptions { UpdateTargetId = "results" + Model.intEquipmentID, HttpMethod = "Post" }, new { @class = "btn btn-primary" })
+            @Ajax.ActionLink("Track Service History Provider", "GetTrackServiceHistoryProvider", "Equipment", new { id = Model.intEquipmentID }, new AjaxOptions { UpdateTargetId = "results" + Model.intEquipmentID, HttpMethod = "Post" }, new { @class = "btn btn-primary" })
+            @Ajax.ActionLink("Diagram", "Diagram", "Equipment", new { id = Model.intEquipmentID }, new AjaxOptions { UpdateTargetId = "results" + Model.intEquipmentID, HttpMethod = "Post" }, new { @class = "btn btn-primary" })
+            <table id=@("results"+Model.intEquipmentID)></table>
+
+
+
+
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+

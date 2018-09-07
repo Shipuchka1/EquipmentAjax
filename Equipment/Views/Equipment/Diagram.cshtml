@@ -1,0 +1,44 @@
+﻿@model Dictionary<string, int>
+
+
+<div id=@("chart_div"+ViewBag.IdEq)></div>
+<script>
+    if (@Model.Count== 0)
+        $('@("#chart_div"+ViewBag.IdEq)').text("Нет данных по этой машине. Чтобы посмотреть график спуститесь до Equipment с номером id 41 и ниже");
+    else
+    drawChart();
+   
+    function drawChart() {
+        console.log("log");
+
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Дата');
+        data.addColumn('number', 'Количество');
+
+        data.addRows([
+
+            @foreach (KeyValuePair<string,int> item in Model)
+                    {
+                        <text>
+            ["@item.Key",@item.Value],
+            </text>
+            }
+          
+          
+            
+            ]);
+
+
+        var options = {
+            'title': 'График остановов',
+            'width': 400,
+            'height': 300
+        };
+
+
+        var chart = new google.visualization.PieChart(document.getElementById('@("chart_div"+ViewBag.IdEq)'));
+        chart.draw(data, options);
+    }
+</script>
+
